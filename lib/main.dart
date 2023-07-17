@@ -61,6 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
           Expression exp = p.parse(expression);
           ContextModel cm = ContextModel();
           result = '${exp.evaluate(EvaluationType.REAL, cm)}';
+          if (result.contains('.') &&
+              double.parse(result) == double.parse(result).toInt()) {
+            result = double.parse(result).toInt().toString();
+          }
         } catch (e) {
           result = 'Error';
         }
